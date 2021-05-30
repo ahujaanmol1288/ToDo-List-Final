@@ -129,12 +129,10 @@ app.post("/delete",function(req,res){
   }else{
     //Mongoose remove document from array google
     // The $pull operator removes from an existing array all instances of a value or values that match a specified condition
-    List.findOneAndUpdate({name : listName}, {$pull : {items : {id : checkedItemId}}}, function(err, foundList){
+    List.findOneAndUpdate({name : listName}, {$pull : {items : {_id : checkedItemId}}}, function(err, foundList){
       if(!err){
         //console.log("check" + listName);
         res.redirect('/' + listName);
-      }else{
-        //console.log(err);
       }
     });
   }
